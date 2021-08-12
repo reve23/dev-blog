@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static%}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% endblock %}
+
+{% block content%}
+<a href="{% url 'home'%}" class="btn btn-dark my-3"
+>Go back to homepage</a
+>
+<div class="container">
+    <img src="{{blog.image.url}}"  class="" alt="">
+</div>
+<div class="container my-5">
+    <article class="blog-post">
+        <h2 class="blog-post-title">{{blog.title}}</h2>
+        <p class="blog-post-meta">{{blog.pub_date}}</p> by {{blog.aurthor}},</p>
+    
+        <p>{{blog.desc}}</p>
+       
+      </article>
+</div>
+
+<div class="container">
+    {% for item in blog.item_set.all %}
+        <main class="flex-shrink-0">
+            <div class="container">
+            <h1 class="mt-5">{{item.name}}</h1>
+            <p class="lead">{{item.comment}}</p>
+            </div>
+        </main>
+    {% endfor%}
+</div>
+
+{% endblock %}
